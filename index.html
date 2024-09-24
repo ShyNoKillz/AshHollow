@@ -74,22 +74,22 @@ His voice trembles. &quot;People talk about the old families—the ones that fou
 [[Return to the inn|Inn]]</tw-passagedata><tw-passagedata pid="5" name="Forest" tags="" position="500,500" size="100,100">:: Forest
 You step into the forest, the trees twisting overhead, casting eerie shadows on the ground. The forest remains quiet and still. You sense that there’s something hidden here...
 
-(if: $sawCloakedMan is true and $learnedInSecretPassage is true)[
-   A break in the clouds allows the moonlight to reveal a faint glowing pattern in the grass. It looks like the symbol you read about in the journal. You hear a rustling sound—a branch cracking in the distance.
+(if: $sawCloakedMan is true and $learnedSecretPassage is true)[
+   (text-colour:yellow)[A break in the clouds allows the moonlight to reveal a faint glowing pattern in the grass. It looks like the symbol you read about in the journal. You hear a rustling sound—a branch cracking in the distance.]
    [[Investigate the sound|CloakedManChase]]
 ]
-(else-if: $sawCloakedMan is true and $learnedInSecretPassage is false)[
+(else-if: $sawCloakedMan is true and $learnedSecretPassage is false)[
    You notice strange details in the forest, but something feels incomplete. The forest holds secrets, but you need more information.
- 	 [[Talk to Townsfolk|Townsfolk]]
+   [[Talk to Townsfolk|Townsfolk]]
    (if: $learnedAboutChurch is true)[
       [[Go to the church|Church]]
    ]
 ]
-(else-if: $sawCloakedMan is false and $learnedInSecretPassage is true)[
+(else-if: $sawCloakedMan is false and $learnedSecretPassage is true)[
    The journal hinted at a hidden pattern in the forest, but something feels off. Perhaps you&#39;re missing a key detail.
    [[Go to Inn|Inn]]
 ]
-(else-if: $learnedAboutChurch is true and $learnedInSecretPassage is false)[
+(else-if: $learnedAboutChurch is true and $learnedSecretPassage is false)[
    (text-colour:orange)[You recall the townsfolk mentioning the old church. Maybe you should investigate it before continuing your search here.]
    [[Go to the church|Church]]
 ]
@@ -124,7 +124,7 @@ You follow the cloaked figure through the winding streets. His pace is deliberat
 
 &quot;Looking for answers, are we? You&#39;ll find them soon... sooner than you think. But remember, truth is revealed in (text-colour:red)[&#39;&#39;threes&#39;&#39;]—&#39;&#39;3 presses, 3 strikes, 3 steps...&quot;&#39;&#39;
 
-(if: $learnedInSecretPassage is true)[
+(if: $learnedSecretPassage is true)[
    You glance at the faint, glowing symbol etched into the wall, and it strikes you. It&#39;s the same symbol described in the journal you found in the secret passage. This can&#39;t be a coincidence.
 ](else-if: $sawCarvingsInChurch is true)[
    You recognize the faint, glowing symbol etched into the wall. It&#39;s the same symbol you traced in the church. This can&#39;t be a coincidence.
@@ -144,7 +144,7 @@ A deep sense of unease washes over you as the carvings form a pattern—a map? O
 </tw-passagedata><tw-passagedata pid="11" name="AlleySymbol" tags="" position="175,775" size="100,100">:: AlleySymbol
 The cloaked figure disappears into the alley’s shadows. You step closer to the wall, noticing a faintly glowing symbol etched into the stone.
 
-(if: $learnedInSecretPassage is true)[
+(if: $learnedSecretPassage is true)[
    (text-colour:orange)[The symbol is unmistakable—it’s the same as the one described in the journal from the secret passage. A surge of recognition hits you. Whatever this symbol represents, it’s tied to the secrets you&#39;ve uncovered so far. You feel an urge to head into the forest, where the answers might lie.]
    [[Head to the forest|Forest]]
 ](else:)[
@@ -153,7 +153,7 @@ The cloaked figure disappears into the alley’s shadows. You step closer to the
 
 A low whisper echoes in the alley: &quot;You’re closer than you think...&quot; The words send a chill down your spine, as if a deeper truth lurks just out of reach.
 
-(if: $learnedInSecretPassage is false and $learnedAboutChurch is true)[
+(if: $learnedSecretPassage is false and $learnedAboutChurch is true)[
    (text-colour:orange)[You recall the townsfolk mentioning the abandoned church. Maybe there’s something hidden there...]
    [[Go to the church|Church]]
 ]
@@ -173,7 +173,7 @@ One section of the carving emits a faint glow. As your fingers brush over its su
 
 [[Press the glowing symbol|PressCarving]]
 
-(if: $learnedInSecretPassage is true and $sawCloakedMan is true)[
+(if: $learnedSecretPassage is true and $sawCloakedMan is true)[
    (text-colour:orange)[The forest now seems like your next destination.]
    [[Head to the forest|Forest]]
 ]
@@ -225,7 +225,8 @@ You press the glowing symbol.
 
 [[Step back|InvestigateCarvings]]  &lt;!-- Updated from &#39;Return to the church&#39; --&gt;
 </tw-passagedata><tw-passagedata pid="15" name="SecretPassage" tags="" position="750,900" size="100,100">:: SecretPassage
-(set: $learnedInSecretPassage to true)
+(set: $learnedSecretPassage to true)
+(set: $unlockedSecretPassage to true)
 
 You step into the dimly lit secret passage. The air is cold and stale, and the stone walls are etched with more symbols. At the end of the passage, you find a dusty old journal, its pages yellowed with age.
 
@@ -252,7 +253,7 @@ The town of Ash Hollow stands before you, but it’s not the town you know. The 
 {
 (set: $learnedAboutChurch to false)
 (set: $sawCloakedMan to false)
-(set: $learnedInSecretPassage to false)
+(set: $learnedSecretPassage to false)
 (set: $pressCount to 0)
 (set: $chasedCloakedMan to false)
 }
