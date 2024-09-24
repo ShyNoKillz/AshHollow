@@ -72,16 +72,22 @@ His voice trembles. &quot;People talk about the old families—the ones that fou
 
 [[Investigate the alleys|TownFurther]]
 [[Return to the inn|Inn]]</tw-passagedata><tw-passagedata pid="5" name="Forest" tags="" position="500,500" size="100,100">:: Forest
-You step into the forest, the trees twisting overhead, casting eerie shadows on the ground. The forest remains quiet and still. You sense that there’s something hidden here, but without more information, nothing happens.
+You step into the forest, the trees twisting overhead, casting eerie shadows on the ground. The forest remains quiet and still. You sense that there’s something hidden here...
 
 (if: $sawCloakedMan is true and $learnedInSecretPassage is true)[
    A break in the clouds allows the moonlight to reveal a faint glowing pattern in the grass. It looks like the symbol you read about in the journal. You hear a rustling sound—a branch cracking in the distance.
    [[Investigate the sound|CloakedManChase]]
 ]
-(else-if: $sawCloakedMan is true or $learnedInSecretPassage is true)[
-   You notice subtle details in the forest, but something feels incomplete, like you&#39;re missing a piece of the puzzle. The forest holds secrets, but you haven’t uncovered enough yet.
+(else-if: $sawCloakedMan is true and $learnedInSecretPassage is false)[
+   You notice strange details in the forest, but something feels incomplete. The forest holds secrets, but you need more information.
+ 	 [[Talk to Townsfolk|Townsfolk]]
+   (if: $learnedAboutChurch is true)[
+      [[Go to the church|Church]]
+   ]
+]
+(else-if: $sawCloakedMan is false and $learnedInSecretPassage is true)[
+   The journal hinted at a hidden pattern in the forest, but something feels off. Perhaps you&#39;re missing a key detail.
    [[Go to Inn|Inn]]
-   [[Talk to Townsfolk|Townsfolk]] 
 ]
 (else-if: $learnedAboutChurch is true and $learnedInSecretPassage is false)[
    (text-colour:orange)[You recall the townsfolk mentioning the old church. Maybe you should investigate it before continuing your search here.]
@@ -153,8 +159,7 @@ A low whisper echoes in the alley: &quot;You’re closer than you think...&quot;
 ]
 
 [[Return to the inn|Inn]]
-[[Talk to the townsfolk|Townsfolk]]
-</tw-passagedata><tw-passagedata pid="12" name="InvestigateCarvings" tags="" position="825,775" size="100,100">:: InvestigateCarvings
+[[Talk to the townsfolk|Townsfolk]]</tw-passagedata><tw-passagedata pid="12" name="InvestigateCarvings" tags="" position="825,775" size="100,100">:: InvestigateCarvings
 (set: $sawCarvingsInChurch to true)
 You trace the carvings with your fingers, noting how they seem to form a path. Some of the symbols resemble constellations, while others look like markers on a map.
 
@@ -168,8 +173,8 @@ One section of the carving emits a faint glow. As your fingers brush over its su
 
 [[Press the glowing symbol|PressCarving]]
 
-(if: $sawCarvingsInChurch is true and $sawCloakedMan is true)[
-   The forest now seems like your next destination.
+(if: $learnedInSecretPassage is true and $sawCloakedMan is true)[
+   (text-colour:orange)[The forest now seems like your next destination.]
    [[Head to the forest|Forest]]
 ]
 
@@ -229,8 +234,7 @@ As you flip through the journal, you uncover something shocking: detailed descri
 The more you read, the clearer it becomes—the forest holds far more than just answers, it holds a dangerous secret.
 
 [[Step Back|InvestigateCarvings]]
-[[Head to the forest|Forest]]
-</tw-passagedata><tw-passagedata pid="16" name="PastArrival" tags="" position="600,825" size="100,100">:: PastArrival
+[[Head to the forest|Forest]]</tw-passagedata><tw-passagedata pid="16" name="PastArrival" tags="" position="600,825" size="100,100">:: PastArrival
 You come to a sudden stop, breathless, the forest around you eerily still. The cloaked man is nowhere to be seen. A strange silence falls over the woods, and everything feels... wrong. The trees loom taller, the air heavier, as if the world itself has shifted in some subtle, unspoken way.
 
 Disoriented, you try to make your way back to town, but the path you remember seems unfamiliar—twisting and turning in ways it shouldn’t. As you break through the tree line, a chill runs down your spine.
